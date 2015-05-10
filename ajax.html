@@ -12,7 +12,7 @@ what happens if you use the same javascript code for the wrong div.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="jdlundberg.css">
         <script>
-            function loadXMLDoc()
+            function loadXMLDoc() //This can be named whatever you want; just make sure you also change the onclick for the button.
             {
                 var xmlhttp;
                 if (window.XMLHttpRequest)
@@ -27,15 +27,15 @@ what happens if you use the same javascript code for the wrong div.
                 {
                     if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                        document.getElementById("myDiv").innerHTML=xmlhttp.responseText; //'myDiv' refers to the target div we're pulling the data to.
                     }
                 }
-                xmlhttp.open("GET","newfile.txt",true);
+                xmlhttp.open("GET","newfile.txt",true); //'newfile.txt' is the file we're pulling from the server.  You can name this whatever you want; just be sure to also change the name of the file.
                 xmlhttp.send();
             }
         </script>
         <script>
-            function loadXMLDoc2()
+            function loadXMLDoc2() //This can be named whatever you want; just make sure you also change the onclick for the button.
             {
                 var xmlhttp;
                 if (window.XMLHttpRequest)
@@ -50,10 +50,10 @@ what happens if you use the same javascript code for the wrong div.
                 {
                     if (xmlhttp.readyState==4 && xmlhttp.status==200)
                     {
-                        document.getElementById("myDiv2").innerHTML=xmlhttp.responseText;
+                        document.getElementById("myDiv2").innerHTML=xmlhttp.responseText; //'myDiv' refers to the target div we're pulling the data to.
                     }
                 }
-                xmlhttp.open("GET","mytextfile.txt",true);
+                xmlhttp.open("GET","mytextfile.txt",true); //In this case, 'mytextfile.txt' doesn't exist, so the button associated with this script won't work correctly.
                 xmlhttp.send();
             }
         </script>
