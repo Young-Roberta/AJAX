@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+This is an example page of how AJAX works.  This page has three portions, the
+first of which shows proper usage of AJAX.  The second will show what happens
+when you request a resource from the server that doesn't exist.  The third shows
+what happens if you use the same javascript code for the wrong div.
+-->
+<html>
+    <head>
+        <title>AJAX Examples</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="jdlundberg.css">
+        <script>
+            function loadXMLDoc()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET","newfile.txt",true);
+                xmlhttp.send();
+            }
+        </script>
+        <script>
+            function loadXMLDoc2()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        document.getElementById("myDiv2").innerHTML=xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET","mytextfile.txt",true);
+                xmlhttp.send();
+            }
+        </script>
+    </head>
+    <body>
+        
+        <div id="myDiv">
+            <p>AJAX can replace this text with text from a file on the server.</p>
+            <p>Click on "Change Content" below to change this text.</p>
+        </div>
+        <button type="button" onclick="loadXMLDoc()">Change Content</button>
+        <br />
+        <br />
+        <div id="myDiv2">
+            <p>If the resource doesn't exist on the server, nothing will happen
+                when you click the button.</p>
+            <p>Let's try finding a non-existent resource called 'mytextfile.txt.'</p>
+        </div>
+        <button type="button" onclick="loadXMLDoc2()">Change Content</button>
+        <br />
+        <br />
+        <div id="myDiv">
+            <p>Another thing you need to worry about is making sure that you are
+            changing the correct div.  The javascript function will only change
+            the first div with the associated id.  This div and the first div are
+            both named 'myDiv,' and the script associated with the button below
+            applies the text in the .txt file to the div id'd as 'myDiv.'</p>
+            <p>However, when you click this button, it still only affects the first
+                occurrence of the 'myDiv' id.
+        </div>
+        <button type="button" onclick="loadXMLDoc()">Change Content</button>
+    </body>
+</html>
